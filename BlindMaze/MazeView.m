@@ -29,6 +29,11 @@
 }
 */
 
+/*
+
+// This is Shane's Branch? '
+ */
+
 - (BOOL)canBecomeFirstResponder
 {
     return YES;
@@ -43,17 +48,9 @@
         self.backgroundColor = [UIColor grayColor];
         self.multipleTouchEnabled = YES;
         
-        UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                              action:@selector(doubleTap:)];
-        doubleTapRecognizer.numberOfTapsRequired = 2;
-        doubleTapRecognizer.delaysTouchesBegan = YES;
-        
-        [self addGestureRecognizer:doubleTapRecognizer];
-        
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                         action:@selector(tap:)];
         tapRecognizer.delaysTouchesBegan = YES;
-        [tapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
         [self addGestureRecognizer:tapRecognizer];
     }
     return self;
@@ -88,7 +85,7 @@
     double green = yPosition / 700.0; //arc4random() % 255 / 255.0;
     double blue =  yPosition / 700.0; //arc4random() % 255 / 255.0;
     
-    UIColor *posColor = [UIColor colorWithRed:red green:green blue:blue alpha: 1.0];
+    UIColor *posColor = [UIColor colorWithRed:(1-red) green:green blue:blue alpha: 1.0];
     
     return posColor;
 }
