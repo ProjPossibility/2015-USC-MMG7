@@ -22,12 +22,12 @@
 @implementation MazeView
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 - (BOOL)canBecomeFirstResponder
 {
@@ -55,6 +55,15 @@
         tapRecognizer.delaysTouchesBegan = YES;
         [tapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
         [self addGestureRecognizer:tapRecognizer];
+        
+        NSMutableArray * ppArray = [[NSMutableArray alloc] init];
+        for (int i = 20; i < 600; i = i + 20) {
+            PixelPoint * point = [[PixelPoint alloc] initWithX:160 withY:i];
+            [ppArray addObject:point];
+        }
+        
+        self.leftGrid = [[Grid alloc] initWithIsLeft:true withPPArray:ppArray];
+        
     }
     return self;
 }
@@ -79,7 +88,63 @@
 }
 
 
-//START OF PETER'S COLOR STUFF
+
+/*To avoid excessive array checking
+ 1)store previous touch's point
+ 2)if current touch's point is more than 5 away from prev touch's point,
+ call playMove function
+ */
+- (void)touchesMoved:(NSSet *)touches
+           withEvent:(UIEvent *)event
+{
+    
+    int result = 7;
+    // Let's put in a log statement to see the order of events
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"NEW TOUCHES MOVED");
+    for (UITouch *t in touches) {
+        NSValue *key = [NSValue valueWithNonretainedObject:t];
+        Player1 *player1 = self.linesInProgress[key];
+        
+        player1.location = [t locationInView:self];
+        
+        CGPoint point = [t locationInView:t.view];
+        CGPoint pointOnScreen = [t.view convertPoint:point fromView:nil];
+        
+        PixelPoint *playerTouch = [[PixelPoint alloc] initWithX:(int)pointOnScreen.x withY:(int)pointOnScreen.y];
+        
+        result = [self.leftGrid playersMoveWithPoint:playerTouch wasATap:false];
+        
+        
+        
+        NSLog(@"Point - %f, %f", pointOnScreen.x, pointOnScreen.y);
+        NSLog(@"Touch");
+        self.backgroundColor = [self yBasedColor:(double)pointOnScreen.y xBasedColor:(double)pointOnScreen.x];
+    }
+    
+    
+    
+    if (result == 1) {
+        if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
+        {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            
+        }
+        else
+        {
+            // Not an iPhone: so doesn't have vibrate
+        }
+    } else if (result == 2)
+        
+    {
+        NSLog(@"You've won!");
+    }
+    
+    
+    
+    [self setNeedsDisplay];
+}
+
 
 - (UIColor *) yBasedColor:(double)yPosition xBasedColor:(double)xPosition
 {
@@ -97,49 +162,17 @@
     return posColor;
 }
 
-- (void)touchesMoved:(NSSet *)touches
-           withEvent:(UIEvent *)event 
+/*Implement a better color selection method, taking y position as a parameter
+ */
+-(UIColor *)randomColor
 {
-    // Let's put in a log statement to see the order of events
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    
-    for (UITouch *t in touches) {
-        NSValue *key = [NSValue valueWithNonretainedObject:t];
-        Player1 *player1 = self.linesInProgress[key];
-        
-        player1.location = [t locationInView:self];
-        
-        CGPoint point = [t locationInView:t.view];
-        CGPoint pointOnScreen = [t.view convertPoint:point fromView:nil];
-        NSLog(@"Point - %f, %f", pointOnScreen.x, pointOnScreen.y);
-        NSLog(@"Touch");
-        
-        
-        //***** changed line below
-        self.backgroundColor = [self yBasedColor:(double)pointOnScreen.y xBasedColor:(double)pointOnScreen.x];
-       // if ((pointOnScreen.x < 100 || pointOnScreen.x > 300)) {
-        //    self.backgroundColor = [UIColor blackColor];
-        //}
-    }
-    
-    
-    // Set and if statement related to the range of our path
-    if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
-    {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-       
-    }
-    else
-    {
-        // Not an iPhone: so doesn't have vibrate
-    }
-    
-
-    
-    [self setNeedsDisplay];
+    double red = arc4random() % 255 / 255.0;
+    double green = arc4random() % 255 / 255.0;
+    double blue = arc4random() % 255 / 255.0;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    //NSLog(@"%@", color);
+    return color;
 }
-
-//END OF PETER'S COLOR STUFF
 
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
@@ -158,15 +191,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other
     NSLog(@"Recognized tap");
     
     CGPoint point = [gr locationInView:self]; //This point is the location of our single tap
-        
-    [self setNeedsDisplay];
-}
-
-- (void)doubleTap:(UIGestureRecognizer *)gr
-{
-    NSLog(@"Recognized Double Tap");
     
-    [self.linesInProgress removeAllObjects];
     [self setNeedsDisplay];
 }
 

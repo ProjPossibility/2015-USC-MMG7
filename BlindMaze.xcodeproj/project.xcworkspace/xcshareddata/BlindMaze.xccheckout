@@ -10,6 +10,8 @@
 	<string>BlindMaze</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>315D52FB6D9632124E1F2EE49094677700019EA7</key>
+		<string>https://github.com/faraza/BlindMaze.git</string>
 		<key>DD4AE73801F9A17723F7C289C36597C2B31B0A2B</key>
 		<string>https://github.com/ProjPossibility/2015-USC-MMG7.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>BlindMaze.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>315D52FB6D9632124E1F2EE49094677700019EA7</key>
+		<string>../../../BlindMaze</string>
 		<key>DD4AE73801F9A17723F7C289C36597C2B31B0A2B</key>
 		<string>../..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>DD4AE73801F9A17723F7C289C36597C2B31B0A2B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>2015-USC-MMG7</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>315D52FB6D9632124E1F2EE49094677700019EA7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BlindMaze</string>
 		</dict>
 	</array>
 </dict>

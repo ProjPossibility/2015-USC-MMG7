@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Grid.h"
+#import "PixelPoint.h"
 
 @interface MazeView : UIView
+@property (nonatomic) Grid* leftGrid;
+
 
 @end
