@@ -88,6 +88,10 @@
     double green = yPosition / 700.0; //arc4random() % 255 / 255.0;
     double blue =  yPosition / 700.0; //arc4random() % 255 / 255.0;
     
+    red = red - (350 - xPosition)/1600;
+    blue = blue - xPosition/1200;
+    green = green - xPosition/1200;
+    
     UIColor *posColor = [UIColor colorWithRed:red green:green blue:blue alpha: 1.0];
     
     return posColor;
@@ -113,9 +117,9 @@
         
         //***** changed line below
         self.backgroundColor = [self yBasedColor:(double)pointOnScreen.y xBasedColor:(double)pointOnScreen.x];
-        if ((pointOnScreen.x < 100 || pointOnScreen.x > 300)) {
-            self.backgroundColor = [UIColor blackColor];
-        }
+       // if ((pointOnScreen.x < 100 || pointOnScreen.x > 300)) {
+        //    self.backgroundColor = [UIColor blackColor];
+        //}
     }
     
     
