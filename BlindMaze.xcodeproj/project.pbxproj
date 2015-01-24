@@ -17,7 +17,7 @@
 		346A13FB1A735F5B00E6786E /* MazeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346A13FA1A735F5B00E6786E /* MazeView.m */; };
 		346A13FE1A735F6900E6786E /* Player1.m in Sources */ = {isa = PBXBuildFile; fileRef = 346A13FD1A735F6900E6786E /* Player1.m */; };
 		346A14011A73783D00E6786E /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 346A14001A73783D00E6786E /* Grid.m */; };
-		D2DC39951A744F5E001BD974 /* PixelPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC39941A744F5E001BD974 /* PixelPoint.m */; };
+		D2DC39981A745183001BD974 /* PixelPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC39971A745183001BD974 /* PixelPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,8 @@
 		346A13FD1A735F6900E6786E /* Player1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player1.m; sourceTree = "<group>"; };
 		346A13FF1A73783D00E6786E /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		346A14001A73783D00E6786E /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
-		D2DC39931A744F5E001BD974 /* PixelPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelPoint.h; path = ../../BlindMaze/BlindMaze/BlindMaze/PixelPoint.h; sourceTree = "<group>"; };
-		D2DC39941A744F5E001BD974 /* PixelPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PixelPoint.m; path = ../../BlindMaze/BlindMaze/BlindMaze/PixelPoint.m; sourceTree = "<group>"; };
+		D2DC39961A745183001BD974 /* PixelPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelPoint.h; sourceTree = "<group>"; };
+		D2DC39971A745183001BD974 /* PixelPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +93,8 @@
 		346A13CF1A735E9F00E6786E /* BlindMaze */ = {
 			isa = PBXGroup;
 			children = (
+				D2DC39961A745183001BD974 /* PixelPoint.h */,
+				D2DC39971A745183001BD974 /* PixelPoint.m */,
 				346A13D41A735E9F00E6786E /* AppDelegate.h */,
 				346A13D51A735E9F00E6786E /* AppDelegate.m */,
 				346A13F61A735F4B00E6786E /* MazeViewController.h */,
@@ -100,8 +102,6 @@
 				346A13F91A735F5B00E6786E /* MazeView.h */,
 				346A13FA1A735F5B00E6786E /* MazeView.m */,
 				346A13FF1A73783D00E6786E /* Grid.h */,
-				D2DC39931A744F5E001BD974 /* PixelPoint.h */,
-				D2DC39941A744F5E001BD974 /* PixelPoint.m */,
 				346A14001A73783D00E6786E /* Grid.m */,
 				346A13FC1A735F6900E6786E /* Player1.h */,
 				346A13FD1A735F6900E6786E /* Player1.m */,
@@ -245,7 +245,7 @@
 				346A13D31A735E9F00E6786E /* main.m in Sources */,
 				346A13F81A735F4B00E6786E /* MazeViewController.m in Sources */,
 				346A13FE1A735F6900E6786E /* Player1.m in Sources */,
-				D2DC39951A744F5E001BD974 /* PixelPoint.m in Sources */,
+				D2DC39981A745183001BD974 /* PixelPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
