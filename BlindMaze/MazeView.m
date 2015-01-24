@@ -79,6 +79,20 @@
 }
 
 
+//START OF PETER'S COLOR STUFF
+
+- (UIColor *) yBasedColor:(double)yPosition xBasedColor:(double)xPosition
+{
+    //colors based on y-values
+    double red = yPosition / 700.0;//pointOnScreen.y / 200;
+    double green = yPosition / 700.0; //arc4random() % 255 / 255.0;
+    double blue =  yPosition / 700.0; //arc4random() % 255 / 255.0;
+    
+    UIColor *posColor = [UIColor colorWithRed:red green:green blue:blue alpha: 1.0];
+    
+    return posColor;
+}
+
 - (void)touchesMoved:(NSSet *)touches
            withEvent:(UIEvent *)event 
 {
@@ -96,6 +110,9 @@
         NSLog(@"Point - %f, %f", pointOnScreen.x, pointOnScreen.y);
         NSLog(@"Touch");
         
+        
+        //***** changed line below
+        self.backgroundColor = [self yBasedColor:(double)pointOnScreen.y xBasedColor:(double)pointOnScreen.x];
         if ((pointOnScreen.x < 100 || pointOnScreen.x > 300)) {
             self.backgroundColor = [UIColor blackColor];
         }
@@ -117,6 +134,8 @@
     
     [self setNeedsDisplay];
 }
+
+//END OF PETER'S COLOR STUFF
 
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
