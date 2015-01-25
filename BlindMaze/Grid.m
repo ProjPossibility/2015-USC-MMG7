@@ -23,7 +23,7 @@
     if (self = [super init]) {
         
         self.isLeft = left;
-        self.safetyRad = 75;
+        self.safetyRad = 30;
         self.ppDistance = 10;
     }
     return self;
@@ -33,7 +33,7 @@
     
     if (self = [super init]) {
         self.isLeft = left;
-        self.safetyRad = 75;
+        self.safetyRad = 30;
         self.ppDistance = 10;
         self.pixelPointsArray = ppArray;
     }
@@ -41,12 +41,11 @@
 }
 
 -(int)playersMoveWithPoint:(PixelPoint *)playerPoint wasATap:(bool)tap{
+    [playerPoint logPixelCords];
     bool start;
     if(self.isLeft){
         //start = (playerPoint.xCord < 220 && playerPoint.xCord > 150 && playerPoint.yCord > 620); //change according to values of box
         start = playerPoint.yCord > 600;
-        if(start) NSLog(@"Start");
-        //NSLog(@"YCoord: %d",playerPoint.yCord);
     }
     else
         start = (playerPoint.xCord < 220 && playerPoint.xCord > 150 && playerPoint.yCord < 50); //change according to values of box. X boundaries should be the same
@@ -56,11 +55,9 @@
     if((tap && !start) || self.hasCollided){
         self.hasCollided = true;
         NSLog(self.hasCollided ? @"HasCollided" : @"No collision??");
-        //for (PixelPoint *p in self. pixelPointsArray)
-          //  [p logPixelCords];
         return 1; //invalid move; phone should produce sound
     }
-    else if (( playerPoint.yCord < 270 &&self.isLeft) || (playerPoint.yCord> 330 && !self.isLeft)){ //change according to victory boundaries
+    else if (( playerPoint.yCord < 60 &&self.isLeft) || (playerPoint.yCord> 330 && !self.isLeft)){ //change according to victory boundaries
         self.hasCollided = false;
         return 2;
     }

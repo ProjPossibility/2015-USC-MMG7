@@ -57,8 +57,15 @@
         [self addGestureRecognizer:tapRecognizer];
         
         NSMutableArray * ppArray = [[NSMutableArray alloc] init];
+        
+        //let's say x distance can vary by 20 if safetyRad is 30
+        int curX = arc4random_uniform(350);
         for (int i = 20; i < 600; i = i + 20) {
-            PixelPoint * point = [[PixelPoint alloc] initWithX:160 withY:i];
+            int randomChange = (int)arc4random_uniform(31) - 10;
+            int nextX = curX+randomChange;
+            if(nextX>0 && nextX < 350)
+                curX = nextX;
+            PixelPoint * point = [[PixelPoint alloc] initWithX:curX withY:i];
             [ppArray addObject:point];
         }
         self.leftGrid = [[Grid alloc] initWithIsLeft:true withPPArray:ppArray];
@@ -125,7 +132,7 @@
     
     
     if (result == 1) {
-       /* if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
+        if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
         {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             
@@ -133,7 +140,7 @@
         else
         {
             // Not an iPhone: so doesn't have vibrate
-        }*/
+        }
         
         //NSLog(@"BAD AREA");
     } else if (result == 2)
