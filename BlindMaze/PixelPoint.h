@@ -12,4 +12,5 @@
 @property int xCord, yCord;
 -(bool)isNearOtherPoint:(PixelPoint *) otherPoint inRadius:(int)radius;
 -(id)initWithX:(int)x withY:(int)y;
+-(void)logPixelCords;
 @end

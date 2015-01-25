@@ -61,7 +61,6 @@
             PixelPoint * point = [[PixelPoint alloc] initWithX:160 withY:i];
             [ppArray addObject:point];
         }
-        
         self.leftGrid = [[Grid alloc] initWithIsLeft:true withPPArray:ppArray];
         
     }
@@ -72,7 +71,7 @@
            withEvent:(UIEvent *)event
 {
     // Let's put in a log statement to see the order of events
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    //NSLog(@"%@", NSStringFromSelector(_cmd));
     
     for (UITouch *t in touches) {
         CGPoint location = [t locationInView:self];
@@ -97,11 +96,11 @@
 - (void)touchesMoved:(NSSet *)touches
            withEvent:(UIEvent *)event
 {
-    
+
     int result = 7;
     // Let's put in a log statement to see the order of events
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSLog(@"NEW TOUCHES MOVED");
+    //NSLog(@"%@", NSStringFromSelector(_cmd));
+    //NSLog(@"NEW TOUCHES MOVED");
     for (UITouch *t in touches) {
         NSValue *key = [NSValue valueWithNonretainedObject:t];
         Player1 *player1 = self.linesInProgress[key];
@@ -113,19 +112,20 @@
         
         PixelPoint *playerTouch = [[PixelPoint alloc] initWithX:(int)pointOnScreen.x withY:(int)pointOnScreen.y];
         
+        //NSLog(@"Point - %d, %d", (int)pointOnScreen.x, (int)pointOnScreen.y);
+        [playerTouch logPixelCords];
         result = [self.leftGrid playersMoveWithPoint:playerTouch wasATap:false];
         
         
         
-        NSLog(@"Point - %f, %f", pointOnScreen.x, pointOnScreen.y);
-        NSLog(@"Touch");
+        //NSLog(@"Point - %f, %f", pointOnScreen.x, pointOnScreen.y);
         self.backgroundColor = [self yBasedColor:(double)pointOnScreen.y xBasedColor:(double)pointOnScreen.x];
     }
     
     
     
     if (result == 1) {
-        if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
+       /* if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
         {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             
@@ -133,7 +133,9 @@
         else
         {
             // Not an iPhone: so doesn't have vibrate
-        }
+        }*/
+        
+        //NSLog(@"BAD AREA");
     } else if (result == 2)
         
     {
@@ -190,7 +192,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other
 {
     NSLog(@"Recognized tap");
     
-    CGPoint point = [gr locationInView:self]; //This point is the location of our single tap
+    //CGPoint point = [gr locationInView:self]; //This point is the location of our single tap
     
     [self setNeedsDisplay];
 }

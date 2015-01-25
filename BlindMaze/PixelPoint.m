@@ -15,6 +15,13 @@
  */
 
 -(bool) isNearOtherPoint:(PixelPoint *)otherPoint inRadius:(int)radius{
+    NSLog(@"Other point's crap: ");
+    [otherPoint logPixelCords];
+    NSLog(@"your crap: ");
+    [self logPixelCords];
+    
+    NSLog(@"X abs: %d Y abs: %d", (abs(otherPoint.xCord-self.xCord)), abs(otherPoint.yCord-self.yCord));
+    
     return(abs(otherPoint.xCord-self.xCord)<=radius && abs(otherPoint.yCord-self.yCord) <=radius);
 }
 
@@ -25,6 +32,10 @@
     }
     return self;
 };
+
+-(void) logPixelCords{
+    NSLog(@"Pixel cords: (%d, %d)",self.xCord, self.yCord);
+}
 
 
 
